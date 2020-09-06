@@ -6,13 +6,15 @@ import {
   CSSReset
 } from '@chakra-ui/core';
 import ToggleTheme from './components/ToggleTheme';
+import LoginForm from './components/LoginForm';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <ColorModeProvider>
         <CSSReset />
-	<ToggleTheme />  
+	<ToggleTheme />
+  <LoginForm />  
       </ColorModeProvider>
     </ThemeProvider>
   );
