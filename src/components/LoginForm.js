@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Flex,
     Box,
@@ -13,6 +13,14 @@ import {
 
 const LoginForm = () => {
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        alert(`Email: ${email} & Password: ${password}`);
+    }
+
     return(
 
         <Flex width="full" align="center" justifyContent="center">
@@ -22,14 +30,14 @@ const LoginForm = () => {
                  <Heading>Login</Heading>
              </Box>
             <Box my={4} textAlign="left">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <FormControl isRequired>
                         <FormLabel>Email</FormLabel>
-                        <Input type="email" placeholder="test@test.com" />
+                        <Input type="email" placeholder="test@test.com" onChange={event => setEmail(event.currentTarget.value)} />
                     </FormControl>
                     <FormControl mt={6} isRequired>
                         <FormLabel>Password</FormLabel>
-                        <Input type="password" placeholder="**********" />
+                        <Input type="password" placeholder="**********" onChange={event => setPassword(event.currentTarget.value)} />
                     </FormControl>
                     <Button width="full" mt={4} leftIcon="lock" variantColor="purple" variant="outline" type="submit">Sign In</Button>
                 </form>
