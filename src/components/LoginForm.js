@@ -7,19 +7,34 @@ import {
     FormLabel,
     Input,
     Button,
-    Icon
+    Icon,
+    CircularProgress
 } from '@chakra-ui/core';
+import { userLogin } from '../utils/mockApi';
+import ErrorMessage from '../components/ErrorMessage';
 
 
 const LoginForm = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
-        alert(`Email: ${email} & Password: ${password}`);
-    }
+        setIsLoading(true);
+        //alert(`Email: ${email} & Password: ${password}`);
+        try {
+            await userLogin({ email, password });
+            setIsLoading(false);
+        } catch(err) {
+            setError('Invalid username or password');
+            setIsLoading(false);
+            setEmail('');
+            setPassword('');
+        }
+    };
 
     return(
 
@@ -31,6 +46,7 @@ const LoginForm = () => {
              </Box>
             <Box my={4} textAlign="left">
                 <form onSubmit={handleSubmit}>
+                    {error && <ErrorMessage message={error} />}
                     <FormControl isRequired>
                         <FormLabel>Email</FormLabel>
                         <Input type="email" placeholder="test@test.com" onChange={event => setEmail(event.currentTarget.value)} />
@@ -39,7 +55,18 @@ const LoginForm = () => {
                         <FormLabel>Password</FormLabel>
                         <Input type="password" placeholder="**********" onChange={event => setPassword(event.currentTarget.value)} />
                     </FormControl>
-                    <Button width="full" mt={4} leftIcon="lock" variantColor="purple" variant="outline" type="submit">Sign In</Button>
+                    <Button width="full" 
+                    mt={4} 
+                    leftIcon="lock" 
+                    variantColor="purple" 
+                    variant="outline" 
+                    type="submit">
+                        {isLoading ? (
+                            <CircularProgress isIndeterminate size="24px" color="purple" />
+                        ) : (
+                            'Sign In'
+                        )}
+                    </Button>
                 </form>
             </Box>
           </Box>
