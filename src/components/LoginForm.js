@@ -6,7 +6,8 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Button
+    Button,
+    Icon
 } from '@chakra-ui/core';
 
 
@@ -30,7 +31,7 @@ const LoginForm = () => {
                         <FormLabel>Password</FormLabel>
                         <Input type="password" placeholder="**********" />
                     </FormControl>
-                    <Button width="full" mt={4} variantColor="teal" variant="outline" type="submit">Sign In</Button>
+                    <Button width="full" mt={4} leftIcon="lock" variantColor="purple" variant="outline" type="submit">Sign In</Button>
                 </form>
             </Box>
           </Box>
