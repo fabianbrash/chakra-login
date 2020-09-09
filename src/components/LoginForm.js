@@ -8,7 +8,8 @@ import {
     Input,
     Button,
     Icon,
-    CircularProgress
+    CircularProgress,
+    Text
 } from '@chakra-ui/core';
 import { userLogin } from '../utils/mockApi';
 import ErrorMessage from '../components/ErrorMessage';
@@ -20,6 +21,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoggedIn, setisLoggedIn] = useState(false);
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -27,6 +29,7 @@ const LoginForm = () => {
         //alert(`Email: ${email} & Password: ${password}`);
         try {
             await userLogin({ email, password });
+            setisLoggedIn(true);
             setIsLoading(false);
         } catch(err) {
             setError('Invalid username or password');
@@ -44,6 +47,18 @@ const LoginForm = () => {
              <Box textAlign="center">
                  <Heading>Login</Heading>
              </Box>
+             {isLoggedIn ? (
+                 <Box textAlign="center">
+                     <Text>{email} logged in!</Text>
+                     <Button 
+                     variantColor="orange" 
+                     variant="outline" 
+                     width="full" 
+                     mt={4} onClick={() => setisLoggedIn(false)}>Sign out
+                     </Button>
+                    </Box>
+             ) : (
+            <>
             <Box my={4} textAlign="left">
                 <form onSubmit={handleSubmit}>
                     {error && <ErrorMessage message={error} />}
@@ -65,9 +80,10 @@ const LoginForm = () => {
                     </Button>
                 </form>
             </Box>
+            </>
+             )}
           </Box>
-        </Flex>
-          
+        </Flex>   
     );
 
 }
