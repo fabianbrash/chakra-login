@@ -61,11 +61,7 @@ const LoginForm = () => {
                     variantColor="purple" 
                     variant="outline" 
                     type="submit">
-                        {isLoading ? (
-                            <CircularProgress isIndeterminate size="24px" color="purple" />
-                        ) : (
-                            'Sign In'
-                        )}
+                        {isLoading ? (<CircularProgress isIndeterminate size="24px" color="purple" />) : ('Sign In')}
                     </Button>
                 </form>
             </Box>
