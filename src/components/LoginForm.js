@@ -34,8 +34,8 @@ const LoginForm = () => {
         } catch(err) {
             setError('Invalid username or password');
             setIsLoading(false);
-            setEmail('');
-            setPassword('');
+            //setEmail('');
+            //setPassword('');
         }
     };
 
@@ -54,7 +54,16 @@ const LoginForm = () => {
                      variantColor="orange" 
                      variant="outline" 
                      width="full" 
-                     mt={4} onClick={() => setisLoggedIn(false)}>Sign out
+                     mt={2} 
+                     onClick={() => {
+                         setisLoggedIn(false);
+                         setEmail('');
+                         setPassword('');
+                         setError('');
+                     }
+                        
+                    }>
+                     Sign out
                      </Button>
                     </Box>
              ) : (
