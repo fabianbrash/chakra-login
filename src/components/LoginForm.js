@@ -90,6 +90,7 @@ const LoginForm = () => {
             </Box>
             </>
              )}
+             <h4>Made with <span role="img" aria-label="rockets">🚀</span> and care by me. </h4>
           </Box>
         </Flex>   
     );
