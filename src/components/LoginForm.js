@@ -7,7 +7,6 @@ import {
     FormLabel,
     Input,
     Button,
-    Icon,
     CircularProgress,
     Text
 } from '@chakra-ui/core';
